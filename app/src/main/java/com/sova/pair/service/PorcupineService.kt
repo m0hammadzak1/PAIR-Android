@@ -1,6 +1,5 @@
 package com.sova.pair.service
 
-import ai.picovoice.porcupine.Porcupine
 import ai.picovoice.porcupine.PorcupineActivationException
 import ai.picovoice.porcupine.PorcupineActivationLimitException
 import ai.picovoice.porcupine.PorcupineActivationRefusedException
@@ -15,6 +14,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
+import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
@@ -26,6 +26,7 @@ import com.sova.pair.MainActivity
  * Created by Zaki on 09-01-2024.
  */
 class PorcupineService : Service() {
+    private val SERVICE_ID = 1234
     private val CHANNEL_ID = "PorcupineServiceChannel"
     private val accessKey = "Oyrw3UxdjNeSE8Mdfpf4iXU4yWtwmC5KD69MdzUIfsYagNrFj4SlQg=="
     private var porcupineManager: PorcupineManager? = null
@@ -61,7 +62,15 @@ class PorcupineService : Service() {
             "Porcupine init failed",
             "Service will be shut down"
         ) else getNotification("Wake word service", "Say 'hey Pair'!")
-        startForeground(1234, notification)
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            startForeground(SERVICE_ID, notification)
+        } else {
+            startForeground(
+                SERVICE_ID, notification!!,
+                FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+            )
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 

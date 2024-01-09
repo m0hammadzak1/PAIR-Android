@@ -6,12 +6,12 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sova.pair.databinding.ActivityMainBinding
 import com.sova.pair.service.PorcupineService
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,11 +22,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnstartPair.setOnClickListener {
-            if (hasRecordPermission()) {
-                startService()
+        binding.swEnablePair.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                if (hasRecordPermission()) {
+                    startService()
+                } else {
+                    requestRecordPermission()
+                }
             } else {
-                requestRecordPermission()
+                stopService()
             }
         }
     }
@@ -71,7 +75,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun onPorcupineInitError(errorMessage: String) {
         runOnUiThread {
-            binding.errorText.text = errorMessage
+            binding.tvStatus.visibility = View.VISIBLE
+            binding.tvStatus.setBackgroundColor(getColor(R.color.red))
+            binding.tvStatus.text = "Status : $errorMessage"
+            binding.swEnablePair.isChecked = false
             stopService()
         }
     }
