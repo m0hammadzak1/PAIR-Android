@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,26 +41,22 @@
             android:id="@+id/swEnablePair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
             android:layout_marginEnd="@dimen/margin_padding_12dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btnstartPair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PAIR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/errorText"
+        android:id="@+id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/green"
+        android:paddingHorizontal="@dimen/margin_padding_4dp"
+        android:paddingVertical="@dimen/margin_padding_4dp"
+        android:textAppearance="@style/FontMedium"
+        android:textSize="@dimen/font_12sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/clToolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
