@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE.FOREGROUND_SERVICE_MICROPHONE"
+        android:minSdkVersion="34"/>
 
     <application
         android:name=".MyApp"
@@ -20,6 +22,7 @@
         <service
             android:name=".service.PorcupineService"
             android:enabled="true"
+            android:foregroundServiceType="microphone"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

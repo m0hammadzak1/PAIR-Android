@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Fonts Defined Here -->
+    <style name="FontLight" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/sans_thin</item>
+    </style>
+
+    <style name="FontMedium" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/sans_medium</item>
+    </style>
+
+    <style name="FontMediumItalic" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/sans_medium_italic</item>
+    </style>
+
+    <style name="FontItalic" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/sans_italic</item>
+    </style>
+
+    <style name="FontBold" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/sans_bold</item>
+    </style>
+
+    <style name="FontBoldItalic" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/sans_bold_italic</item>
+    </style>
+
+    <style name="FontRegular" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/sans_regular</item>
+    </style>
+
+</resources>
