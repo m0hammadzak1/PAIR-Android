@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sova.pair.databinding.ActivityMainBinding
 import com.sova.pair.service.PorcupineService
+import com.sova.pair.utils.Common
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +33,13 @@ class MainActivity : AppCompatActivity() {
             } else {
                 stopService()
             }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent?.hasExtra("key") == true){
+            binding.tvText.text = intent.extras?.getString("key")
         }
     }
 
@@ -91,11 +99,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        Common.activity = this
         registerReceiver(receiver, IntentFilter("PorcupineInitError"))
     }
 
     override fun onDestroy() {
-        unregisterReceiver(receiver)
+        //unregisterReceiver(receiver)
         super.onDestroy()
     }
 
