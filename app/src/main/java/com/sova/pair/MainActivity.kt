@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        openFeature()
+        //openFeature()
         showHideMic(false)
         binding.gif.setOnClickListener {
             SpeechRecognizerClass.startSpeechRecognizer(false)

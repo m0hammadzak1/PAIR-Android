@@ -73,9 +73,9 @@
       ]
     },
     {
-      "matchString": "How many devices are connected?",
+      "matchString": "check connected devices",
       "feature": "devicesConnected",
-      "des": "Checking connecting devices",
+      "des": "Checking connected devices",
       "response": "You have 5 connected devices.",
       "initialOnlineValue": true,
       "initialInternetValue": true,
