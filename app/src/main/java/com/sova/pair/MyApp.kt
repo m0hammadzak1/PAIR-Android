@@ -16,9 +16,8 @@ class MyApp : Application() {
     private fun initialize() {
         Paper.init(this)
         Common.initTTS(applicationContext)
-        //Porcupine.initPorcupine(applicationContext)
+        Porcupine.initPorcupine(applicationContext)
         SpeechRecognizerClass.initSpeechRecognizer(applicationContext)
-
     }
 
 }

@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sova.pair.databinding.ActivityMainBinding
 import com.sova.pair.service.PorcupineService
+import com.sova.pair.service.SpeechRecognizerClass
 import com.sova.pair.ui.FeatureActivity
 import com.sova.pair.util.DataParser
 import com.sova.pair.utils.Common
@@ -42,12 +43,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         //openFeature()
+        showHideMic(false)
+        binding.gif.setOnClickListener {
+            SpeechRecognizerClass.startSpeechRecognizer(false)
+            showHideMic(true)
+        }
+    }
+
+    fun showHideMic(flag: Boolean) {
+        if (flag) {
+            binding.gif.playAnimation()
+            binding.gif.loop(true)
+        } else {
+            binding.gif.pauseAnimation()
+            binding.gif.loop(false)
+        }
     }
 
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        if (intent?.hasExtra("key") == true){
+        if (intent?.hasExtra("key") == true) {
             binding.tvText.text = intent.extras?.getString("key")
         }
     }

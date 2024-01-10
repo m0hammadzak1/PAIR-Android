@@ -48,7 +48,7 @@
         app:layout_constraintStart_toEndOf="@id/tvOnline"
         app:layout_constraintTop_toBottomOf="@id/ivBack" />
 
-   <!-- <com.airbnb.lottie.LottieAnimationView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/laRouter"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvOnline"
         app:lottie_autoPlay="true"
         app:lottie_fileName="router.json"
-        app:lottie_loop="true" />-->
+        app:lottie_loop="true" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvFeatureDes"
@@ -67,7 +67,7 @@
         android:textAppearance="@style/FontBold"
         android:textColor="@color/black"
         android:textSize="@dimen/font_16sp"
-        app:layout_constraintTop_toBottomOf="@id/tvInternet"
+        app:layout_constraintTop_toBottomOf="@id/laRouter"
         tools:text="Turning on your router" />
 
 
