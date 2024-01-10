@@ -1,0 +1,52 @@
+{
+  "features": [
+    {
+      "matchString": "Turn on my router",
+      "feature": "turnOnRouter",
+      "des": "Turning on your router",
+      "response": "Router is turned on!",
+      "initialOnlineValue": false,
+      "initialInternetValue": false,
+      "isOnline": true,
+      "internet": true
+    },
+    {
+      "matchString": "Turn off my router",
+      "feature": "turnOffRouter",
+      "des": "Turning off your router",
+      "response": "Router is turned off!",
+      "initialOnlineValue": true,
+      "initialInternetValue": true,
+      "isOnline": false,
+      "internet": false
+    },
+    {
+      "matchString": "Check my internet connection",
+      "feature": "checkInternet",
+      "des": "Checking your internet connection",
+      "response": "Internet is working fine!",
+      "initialOnlineValue": true,
+      "initialInternetValue": true,
+      "isOnline": true,
+      "internet": true
+    },
+    {
+      "matchString": "Troubleshoot my internet",
+      "feature": "troubleshootInternet",
+      "des": "Troubleshooting your internet",
+      "response": "Its seems like your internet is not working.",
+      "initialOnlineValue": true,
+      "initialInternetValue": false,
+      "isOnline": true,
+      "internet": false,
+      "steps": [
+        "Your Wifi plan status",
+        "VZ router status",
+        "Router uptime",
+        "Router efficiency",
+        "Memory utilization",
+        "Firmware version"
+      ]
+    }
+  ]
+}

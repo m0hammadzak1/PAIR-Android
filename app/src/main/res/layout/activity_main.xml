@@ -52,11 +52,13 @@
         android:id="@+id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green"
+        android:background="@color/red"
         android:paddingHorizontal="@dimen/margin_padding_4dp"
         android:paddingVertical="@dimen/margin_padding_4dp"
         android:textAppearance="@style/FontMedium"
         android:textSize="@dimen/font_12sp"
-        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/clToolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

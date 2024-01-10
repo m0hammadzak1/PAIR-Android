@@ -1,17 +1,21 @@
 package com.sova.pair
 
+import android.app.ActivityManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.sova.pair.databinding.ActivityMainBinding
 import com.sova.pair.service.PorcupineService
+import com.sova.pair.ui.FeatureActivity
+import com.sova.pair.util.DataParser
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        checkServiceRunning()
 
         binding.swEnablePair.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -33,16 +39,30 @@ class MainActivity : AppCompatActivity() {
                 stopService()
             }
         }
+
+        openFeature()
     }
 
     private fun startService() {
         val serviceIntent = Intent(this, PorcupineService::class.java)
         ContextCompat.startForegroundService(this, serviceIntent)
+        checkServiceRunning()
+    }
+
+    private fun checkServiceRunning() {
+        if (isServiceRunning(PorcupineService::class.java)) {
+            binding.tvStatus.setBackgroundColor(getColor(R.color.green))
+            binding.tvStatus.text = "Status : PAIR is running!"
+        } else {
+            binding.tvStatus.setBackgroundColor(getColor(R.color.red))
+            binding.tvStatus.text = "Status : Disconnected!"
+        }
     }
 
     private fun stopService() {
         val serviceIntent = Intent(this, PorcupineService::class.java)
         stopService(serviceIntent)
+        checkServiceRunning()
     }
 
     private fun hasRecordPermission(): Boolean {
@@ -91,12 +111,35 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        registerReceiver(receiver, IntentFilter("PorcupineInitError"))
+        if (receiver == null) registerReceiver(receiver, IntentFilter("PorcupineInitError"))
     }
 
     override fun onDestroy() {
-        unregisterReceiver(receiver)
+        if (receiver != null) unregisterReceiver(receiver)
         super.onDestroy()
+    }
+
+    private fun isServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val services = manager.getRunningServices(Int.MAX_VALUE)
+
+        for (service in services) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+
+        return false
+    }
+
+    private fun openFeature() {
+        val features = DataParser.getFeatures(assets)
+        features.forEach {
+            Log.i("FEATURES", "openFeature: ${it.feature}")
+        }
+        val intent = Intent(this, FeatureActivity::class.java)
+        intent.putExtra("feature", features[3])
+        startActivity(intent)
     }
 
 }

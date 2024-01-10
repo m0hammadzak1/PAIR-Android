@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -16,7 +17,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
@@ -39,7 +40,12 @@ android {
 }
 
 dependencies {
-    implementation ("ai.picovoice:porcupine-android:3.0.1")
+    implementation("com.github.transferwise:sequence-layout:1.2.0")
+    implementation("moe.feng:MaterialStepperView:0.2.5")
+    implementation("io.github.pilgr:paperdb:2.7.2")
+    implementation("ai.picovoice:porcupine-android:3.0.1")
+    implementation("com.airbnb.android:lottie:6.3.0")
+    implementation("com.google.code.gson:gson:2.8.7")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.FeatureActivity">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
+        android:padding="@dimen/margin_padding_12dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOnline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:paddingHorizontal="@dimen/margin_padding_4dp"
+        android:paddingVertical="@dimen/margin_padding_4dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/FontMedium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_12sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@id/tvInternet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivBack" />
+
+    <TextView
+        android:id="@+id/tvInternet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:paddingHorizontal="@dimen/margin_padding_4dp"
+        android:paddingVertical="@dimen/margin_padding_4dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/FontMedium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_12sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvOnline"
+        app:layout_constraintTop_toBottomOf="@id/ivBack" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/laRouter"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOnline"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="router.json"
+        app:lottie_loop="true" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFeatureDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/FontBold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_16sp"
+        app:layout_constraintTop_toBottomOf="@id/laRouter"
+        tools:text="Turning on your router" />
+
+<!--    <com.vinay.stepview.VerticalStepView
+        android:id="@+id/slSteps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_padding_12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvFeatureDes"
+        />-->
+
+    <ProgressBar
+        android:id="@+id/pbLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_padding_12dp"
+        android:indeterminate="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/slSteps" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivDone"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/margin_padding_12dp"
+        android:src="@drawable/ic_done"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/slSteps" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
