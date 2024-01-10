@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //openFeature()
+        openFeature()
         showHideMic(false)
         binding.gif.setOnClickListener {
             SpeechRecognizerClass.startSpeechRecognizer(false)
@@ -165,7 +165,7 @@ class MainActivity : AppCompatActivity() {
             Log.i("FEATURES", "openFeature: ${it.feature}")
         }
         val intent = Intent(this, FeatureActivity::class.java)
-        intent.putExtra("feature", features[3])
+        intent.putExtra("feature", features[4])
         startActivity(intent)
     }
 
