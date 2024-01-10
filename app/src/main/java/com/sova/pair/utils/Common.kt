@@ -43,7 +43,6 @@ class Common {
                                 Log.i(TAG, "TTS onDone")
                                 if (inSession) {
                                     CoroutineScope(Dispatchers.Main).launch {
-                                        //SpeechRecognizerClass.initSpeechRecognizer(context!!)
                                         SpeechRecognizerClass.startSpeechRecognizer(true)
                                     }
 
@@ -96,15 +95,15 @@ class Common {
                 if (it.matchString.equals(text, true)) {
                     found = true
                     val intent = Intent(context, FeatureActivity::class.java)
-                    intent.putExtra("feature", it.feature)
+                    intent.putExtra("feature", it)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     context.startActivity(intent)
-                } else {
-                    if (!found) {
-                        startTts("Sorry Command not found, please try again")
-                    }
+                    return@forEach
                 }
                 Log.i("FEATURES", "openFeature: ${it.feature}")
+            }
+            if (!found) {
+                startTts("Sorry Command not found, please try again")
             }
         }
 
