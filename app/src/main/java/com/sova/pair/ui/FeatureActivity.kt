@@ -54,9 +54,7 @@ class FeatureActivity : AppCompatActivity() {
             }
             if (feature!!.talkbackSteps) {
                 val stepss = feature!!.problem.joinToString { "$it\n\n\n\n\n\n\n" }
-                val finalSteps =
-                    stepss + "\nDo you want me to raise service ticket for your problem!"
-                Common.startTts(finalSteps)
+                Common.startTts(stepss)
             }
         }, 10000)
 

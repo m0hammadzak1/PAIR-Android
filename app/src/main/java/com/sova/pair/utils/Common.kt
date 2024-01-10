@@ -9,7 +9,9 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.sova.pair.MainActivity
 import com.sova.pair.R
 import com.sova.pair.service.SpeechRecognizerClass
 import com.sova.pair.ui.FeatureActivity
@@ -77,15 +79,18 @@ class Common {
         }
 
         fun showHideMicIcon(context: Context, flag: Boolean) {
-            if (activity?.findViewById<View?>(R.id.gif) != null) {
-                val image = activity?.findViewById<ImageView>(R.id.gif)
+            if(activity is MainActivity){
+                (activity as MainActivity).showHideMic(flag)
+            }
+            /*if (activity?.findViewById<LottieAnimationView>(R.id.gif) != null) {
+                val image = activity?.findViewById<LottieAnimationView>(R.id.gif)
                 if (flag && image != null) {
                     image.visibility = View.VISIBLE
-                    Glide.with(context).load(R.drawable.mic_listen).into(image)
+                   //Glide.with(context).load(R.drawable.mic_listen).into(image)
                 } else {
                     image?.visibility = View.GONE
                 }
-            }
+            }*/
         }
 
         fun openFeature(context: Context, text: String) {

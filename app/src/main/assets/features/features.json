@@ -62,6 +62,7 @@
         "Checking Firmware version"
       ],
       "problem": [
+        "Its seems like your internet is not working.",
         "You can try these methods to fix this issue :",
         "Restart Device",
         "Update Software",
