@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        openFeature()
+        //openFeature()
     }
 
     override fun onNewIntent(intent: Intent?) {

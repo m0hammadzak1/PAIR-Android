@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">PAIR-Android</string>
+    <string name="back">Back</string>
+    <string name="router_name">Router Name:</string>
+    <string name="router_details">Router Details</string>
+    <string name="conn_devices">Conn Devices:</string>
+    <string name="fios_routers">Fios Routers</string>
+    <string name="on">ON</string>
+    <string name="status">Status:</string>
+    <string name="brand">Brand:</string>
+    <string name="verizon">Verizon</string>
 </resources>

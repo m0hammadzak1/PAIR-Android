@@ -18,7 +18,6 @@ class MyApp : Application() {
         Common.initTTS(applicationContext)
         Porcupine.initPorcupine(applicationContext)
         SpeechRecognizerClass.initSpeechRecognizer(applicationContext)
-        //UtilityFunctions.readCSV(applicationContext)
 
     }
 

@@ -38,7 +38,7 @@ class FeatureActivity : AppCompatActivity() {
             setRouterStatus()
         }, 10000)
 
-        setStepAdapter()
+        //setStepAdapter()
     }
 
     private fun updateInitialRouterData() {

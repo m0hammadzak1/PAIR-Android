@@ -1,7 +1,7 @@
 {
   "features": [
     {
-      "matchString": "Turn on my router",
+      "matchString": "turn on my router",
       "feature": "turnOnRouter",
       "des": "Turning on your router",
       "response": "Router is turned on!",
@@ -11,7 +11,7 @@
       "internet": true
     },
     {
-      "matchString": "Turn off my router",
+      "matchString": "turn off my router",
       "feature": "turnOffRouter",
       "des": "Turning off your router",
       "response": "Router is turned off!",
@@ -21,7 +21,7 @@
       "internet": false
     },
     {
-      "matchString": "Check my internet connection",
+      "matchString": "check my internet connection",
       "feature": "checkInternet",
       "des": "Checking your internet connection",
       "response": "Internet is working fine!",
@@ -31,7 +31,7 @@
       "internet": true
     },
     {
-      "matchString": "Troubleshoot my internet",
+      "matchString": "troubleshoot my internet",
       "feature": "troubleshootInternet",
       "des": "Troubleshooting your internet",
       "response": "Its seems like your internet is not working.",
