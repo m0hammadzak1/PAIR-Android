@@ -2,6 +2,7 @@ package com.sova.pair.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.util.Log
@@ -11,6 +12,8 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.sova.pair.R
 import com.sova.pair.service.SpeechRecognizerClass
+import com.sova.pair.ui.FeatureActivity
+import com.sova.pair.util.DataParser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -74,15 +77,34 @@ class Common {
             Toast.makeText(context, s, Toast.LENGTH_LONG).show()
         }
 
-        fun showHideMicIcon(context: Context, flag: Boolean){
-            if (activity?.findViewById<View?>(R.id.gif) != null){
+        fun showHideMicIcon(context: Context, flag: Boolean) {
+            if (activity?.findViewById<View?>(R.id.gif) != null) {
                 val image = activity?.findViewById<ImageView>(R.id.gif)
-                if (flag && image != null){
+                if (flag && image != null) {
                     image.visibility = View.VISIBLE
                     Glide.with(context).load(R.drawable.mic_listen).into(image)
-                } else{
+                } else {
                     image?.visibility = View.GONE
                 }
+            }
+        }
+
+        fun openFeature(context: Context, text: String) {
+            val features = DataParser.getFeatures(context.assets)
+            var found = false
+            features.forEach {
+                if (it.matchString.equals(text, true)) {
+                    found = true
+                    val intent = Intent(context, FeatureActivity::class.java)
+                    intent.putExtra("feature", it.feature)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(intent)
+                } else {
+                    if (!found) {
+                        startTts("Sorry Command not found, please try again")
+                    }
+                }
+                Log.i("FEATURES", "openFeature: ${it.feature}")
             }
         }
 

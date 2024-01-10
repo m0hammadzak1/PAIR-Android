@@ -95,11 +95,14 @@ class SpeechRecognizerClass {
                 for (result in matches) text = result.trimIndent()
             }
             Log.i(TAG, "onResults $text")
+
             if (text.equals("configure router", false)) {
                 context.startActivity(Intent(context, MainActivity::class.java)
                     .putExtra("key", text)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 Common.startTts("Configuring Router")
+            } else{
+                Common.openFeature(context, text)
             }
             Porcupine.startWakeWordEngine()
         }
