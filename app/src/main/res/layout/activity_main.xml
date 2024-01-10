@@ -61,4 +61,25 @@
         android:textAlignment="center"
         android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/clToolbar" />
+
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:paddingHorizontal="@dimen/margin_padding_4dp"
+        android:paddingVertical="@dimen/margin_padding_4dp"
+        android:textAppearance="@style/FontMedium"
+        android:textSize="@dimen/font_12sp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/tvStatus" />
+
+    <ImageView
+        android:id="@+id/gif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="gif"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

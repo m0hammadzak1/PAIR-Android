@@ -8,6 +8,7 @@ import ai.picovoice.porcupine.PorcupineException
 import ai.picovoice.porcupine.PorcupineInvalidArgumentException
 import ai.picovoice.porcupine.PorcupineManager
 import android.R
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -19,6 +20,7 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.sova.pair.MainActivity
 
 
@@ -31,6 +33,7 @@ class PorcupineService : Service() {
     private val accessKey = "Oyrw3UxdjNeSE8Mdfpf4iXU4yWtwmC5KD69MdzUIfsYagNrFj4SlQg=="
     private var porcupineManager: PorcupineManager? = null
 
+    @SuppressLint("ForegroundServiceType")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         createNotificationChannel()
         try {

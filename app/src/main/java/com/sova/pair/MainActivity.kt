@@ -16,6 +16,7 @@ import com.sova.pair.databinding.ActivityMainBinding
 import com.sova.pair.service.PorcupineService
 import com.sova.pair.ui.FeatureActivity
 import com.sova.pair.util.DataParser
+import com.sova.pair.utils.Common
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +42,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         openFeature()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent?.hasExtra("key") == true){
+            binding.tvText.text = intent.extras?.getString("key")
+        }
     }
 
     private fun startService() {
@@ -112,6 +120,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         if (receiver == null) registerReceiver(receiver, IntentFilter("PorcupineInitError"))
+        Common.activity = this
+        registerReceiver(receiver, IntentFilter("PorcupineInitError"))
     }
 
     override fun onDestroy() {
