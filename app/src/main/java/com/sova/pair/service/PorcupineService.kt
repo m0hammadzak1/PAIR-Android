@@ -15,12 +15,12 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import com.sova.pair.MainActivity
 
 
@@ -46,6 +46,24 @@ class PorcupineService : Service() {
                 ) { keywordIndex ->
                     // Wake word detected!
                     Log.d("PORCUPINE_SERVICE", "Wake word detected: $keywordIndex")
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("WAKE_WORD", true)
+                    intent.flags = FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP
+
+                    val pendingIntent = PendingIntent.getActivity(
+                        this,
+                        0,
+                        intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                    )
+
+                    /*try {
+                        // Start the activity using the PendingIntent
+                        pendingIntent.send(this, 0, null, null, null, null, null);
+                    } catch (e: PendingIntent.CanceledException) {
+                        e.printStackTrace()
+                    }*/
+                    applicationContext.startActivity(intent)
                 }
             porcupineManager?.start()
         } catch (e: PorcupineInvalidArgumentException) {

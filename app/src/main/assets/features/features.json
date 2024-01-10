@@ -8,7 +8,11 @@
       "initialOnlineValue": false,
       "initialInternetValue": false,
       "isOnline": true,
-      "internet": true
+      "internet": true,
+      "talkback": true,
+      "talkbackSteps": false,
+      "steps": [],
+      "problem": []
     },
     {
       "matchString": "Turn off my router",
@@ -18,7 +22,11 @@
       "initialOnlineValue": true,
       "initialInternetValue": true,
       "isOnline": false,
-      "internet": false
+      "internet": false,
+      "talkback": true,
+      "talkbackSteps": false,
+      "steps": [],
+      "problem": []
     },
     {
       "matchString": "Check my internet connection",
@@ -28,7 +36,11 @@
       "initialOnlineValue": true,
       "initialInternetValue": true,
       "isOnline": true,
-      "internet": true
+      "internet": true,
+      "talkback": true,
+      "talkbackSteps": false,
+      "steps": [],
+      "problem": []
     },
     {
       "matchString": "Troubleshoot my internet",
@@ -39,14 +51,45 @@
       "initialInternetValue": false,
       "isOnline": true,
       "internet": false,
+      "talkback": true,
+      "talkbackSteps": true,
       "steps": [
-        "Your Wifi plan status",
-        "VZ router status",
-        "Router uptime",
-        "Router efficiency",
-        "Memory utilization",
-        "Firmware version"
+        "Checking Your Wifi plan status",
+        "Checking VZ router status",
+        "Checking Router uptime",
+        "Checking Router efficiency",
+        "Checking Memory utilization",
+        "Checking Firmware version"
+      ],
+      "problem": [
+        "You can try these methods to fix this issue :",
+        "Restart Device",
+        "Update Software",
+        "Check Settings",
+        "Check Permissions",
+        "Scan for Malware",
+        "Do you want me to repeat these steps or raise a service request!"
       ]
+    },
+    {
+      "matchString": "How many devices are connected?",
+      "feature": "devicesConnected",
+      "des": "Checking connecting devices",
+      "response": "You have 5 connected devices.",
+      "initialOnlineValue": true,
+      "initialInternetValue": true,
+      "isOnline": true,
+      "internet": true,
+      "talkback": true,
+      "talkbackSteps": false,
+      "steps": [
+        "Zaki's Device",
+        "Zaki's Laptop",
+        "Random Device 1",
+        "Random Device 2",
+        "Random Device 3"
+      ],
+      "problem": []
     }
   ]
 }

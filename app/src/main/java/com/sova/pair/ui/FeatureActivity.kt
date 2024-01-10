@@ -9,6 +9,9 @@ import com.sova.pair.R
 import com.sova.pair.databinding.ActivityFeatureBinding
 import com.sova.pair.model.Feature
 import com.sova.pair.model.SavedRouter
+import com.sova.pair.model.Step
+import com.sova.pair.ui.adapter.TroubleShootAdapter
+import com.sova.pair.utils.Common
 
 class FeatureActivity : AppCompatActivity() {
 
@@ -30,15 +33,43 @@ class FeatureActivity : AppCompatActivity() {
         binding.pbLoad.visibility = View.VISIBLE
         binding.ivDone.visibility = View.GONE
         binding.tvFeatureDes.text = feature?.des ?: ""
+
+        handler.postDelayed({
+            if (feature!!.talkback) {
+                Common.startTts(feature?.des ?: "Working On It")
+            }
+        }, 2000)
+
         handler.postDelayed({
             binding.tvFeatureDes.text = feature?.response ?: ""
             binding.pbLoad.visibility = View.GONE
             binding.ivDone.visibility = View.VISIBLE
             updateRouterData()
             setRouterStatus()
+            if (!feature!!.internet || !feature!!.isOnline) {
+                binding.ivDone.setImageDrawable(getDrawable(R.drawable.ic_close))
+            } else binding.ivDone.setImageDrawable(getDrawable(R.drawable.ic_done))
+            if (feature!!.talkback) {
+                Common.startTts(feature?.response ?: "Done")
+            }
+            if (feature!!.talkbackSteps) {
+                val stepss = feature!!.problem.joinToString { "$it\n\n\n\n\n\n\n" }
+                val finalSteps =
+                    stepss + "\nDo you want me to raise service ticket for your problem!"
+                Common.startTts(finalSteps)
+            }
         }, 10000)
 
-        setStepAdapter()
+        if (feature!!.steps.isNotEmpty()) {
+            binding.slSteps.visibility = View.VISIBLE
+            setStepAdapter()
+        } else {
+            binding.slSteps.visibility = View.GONE
+        }
+
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun updateInitialRouterData() {
@@ -79,7 +110,15 @@ class FeatureActivity : AppCompatActivity() {
 
     private fun setStepAdapter() {
         val steps = feature!!.steps.map {
+            Step(it, false)
         }
+        val adapter = TroubleShootAdapter(steps)
+        binding.slSteps.setAdapter(adapter)
+
+        handler.postDelayed({
+            steps[steps.size - 1].isActive = true
+            binding.slSteps.setAdapter(adapter)
+        }, 5000)
 
     }
 

@@ -16,7 +16,10 @@ data class Feature(
     var initialInternetValue: Boolean = true,
     var isOnline: Boolean = true,
     var internet: Boolean = true,
-    var steps: List<String> = emptyList()
+    var steps: List<String> = emptyList(),
+    var problem: List<String> = emptyList(),
+    var talkback: Boolean = false,
+    var talkbackSteps: Boolean = false
 ) : Parcelable {
     fun getStepsList(): List<Step> {
         return steps.map {

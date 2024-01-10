@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         openFeature()
     }
 
+
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         if (intent?.hasExtra("key") == true){
